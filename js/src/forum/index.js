@@ -15,7 +15,7 @@ app.initializers.add('clarkwinkelmann/flarum-ext-poke', () => {
                 icon: 'fas fa-hand-point-left',
                 onclick: () => {
                     app.request({
-                        url: '/api/users/' + this.props.user.id() + '/poke',
+                        url: app.forum.attribute('apiUrl') + '/users/' + this.props.user.id() + '/poke',
                         method: 'POST',
                     }).then(data => {
                         app.store.pushPayload(data);
@@ -39,7 +39,7 @@ app.initializers.add('clarkwinkelmann/flarum-ext-poke', () => {
                 children: app.translator.trans('clarkwinkelmann-poke.forum.profile.reset'),
                 onclick() {
                     app.request({
-                        url: '/api/users/' + user.id() + '/poke-reset',
+                        url: app.forum.attribute('apiUrl') + '/users/' + user.id() + '/poke-reset',
                         method: 'POST',
                     }).then(() => {
                         alert(app.translator.trans('clarkwinkelmann-poke.forum.profile.reseted'));
